@@ -7,10 +7,10 @@ class User(Base):
     
     id = Column(Integer,primary_key=True,index=True)
     name = Column(String)
-    email = Column(String)
+    email = Column(String,unique=True)
     password = Column(String)
     
-    blogs = relationship('Blog',back_populates='creator',lazy="joined")
+    blogs = relationship('Blog',back_populates='creator')
     
 class Blog(Base):
     __tablename__ = 'blogs'
