@@ -3,11 +3,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 from dotenv import load_dotenv
-
+from pathlib import Path
+env_path = Path(__file__).parent / ".env"
+load_dotenv(dotenv_path=env_path)
 load_dotenv()
 
-SQLALCHAMY_DATABASE_URL = os.getenv("SQLALCHAMY_DATABASE_URL")
-engine = create_engine(SQLALCHAMY_DATABASE_URL,connect_args={"check_same_thread":False})
+SQLALCHAMY_DATABASE = os.getenv("SQLALCHAMY_DATABASE_URL")
+engine = create_engine(SQLALCHAMY_DATABASE,connect_args={"check_same_thread":False})
 
 SessionLocal = sessionmaker(bind=engine,autocommit=False,autoflush=False,)
 
